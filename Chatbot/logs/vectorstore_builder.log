@@ -1,0 +1,63 @@
+2025-06-09 18:25:21,788 - INFO - Loaded 474 PDF pages from data/.
+2025-06-09 18:25:21,928 - INFO - Created 1718 chunks from documents.
+2025-06-09 18:30:49,962 - INFO - Use pytorch device_name: cpu
+2025-06-09 18:30:49,962 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-09 18:31:35,409 - INFO - Loaded HuggingFace embedding model.
+2025-06-09 18:36:13,230 - INFO - Loading faiss with AVX2 support.
+2025-06-09 18:36:14,892 - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-09 18:36:15,002 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-09 18:36:15,361 - INFO - Saved FAISS vectorstore to vectorstore/db_faiss.
+2025-06-09 18:36:15,361 - INFO - Vector building pipeline completed successfully.
+2025-06-09 19:37:26,812 - ERROR - Failed to load PDF files: Directory not found: 'chatbot/data/'
+2025-06-09 19:37:26,812 - CRITICAL - Pipeline execution failed: Directory not found: 'chatbot/data/'
+2025-06-09 19:39:18,462 - ERROR - Failed to load PDF files: Directory not found: 'chatbot/data'
+2025-06-09 19:39:18,462 - CRITICAL - Pipeline execution failed: Directory not found: 'chatbot/data'
+2025-06-09 19:44:55,796 - ERROR - Failed to load PDF files: Directory not found: 'chatbot/data'
+2025-06-09 19:44:55,797 - CRITICAL - Pipeline execution failed: Directory not found: 'chatbot/data'
+2025-06-09 19:45:58,003 - ERROR - Failed to load PDF files: Directory not found: 'chatbot/data/'
+2025-06-09 19:45:58,003 - CRITICAL - Pipeline execution failed: Directory not found: 'chatbot/data/'
+2025-06-09 19:54:22,691 - ERROR - Failed to load PDF files: Directory not found: 'chatbot/data'
+2025-06-09 19:54:22,692 - CRITICAL - Pipeline execution failed: Directory not found: 'chatbot/data'
+2025-06-09 19:59:46,738 - INFO - Loaded 474 PDF pages from C:\Users\vrlin\OneDrive\Desktop\Project_New\chatbot\data.
+2025-06-09 19:59:46,971 - INFO - Created 1718 chunks from documents.
+2025-06-09 20:04:46,623 - INFO - Use pytorch device_name: cpu
+2025-06-09 20:04:46,623 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-09 20:05:31,568 - INFO - Loaded HuggingFace embedding model.
+2025-06-09 20:10:45,535 - INFO - Loading faiss with AVX2 support.
+2025-06-09 20:10:46,952 - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-09 20:10:47,205 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-09 20:10:47,730 - INFO - Saved FAISS vectorstore to C:\Users\vrlin\OneDrive\Desktop\Project_New\chatbot\vectorstore\db_faiss.
+2025-06-09 20:10:47,733 - INFO - Vector building pipeline completed successfully.
+2025-06-09 20:21:04,874 - WARNING - EOF marker not found
+2025-06-09 20:21:04,874 - ERROR - Error loading file C:\Users\vrlin\OneDrive\Desktop\Project_New\chatbot\data\test_dummy.pdf
+2025-06-09 20:21:04,875 - ERROR - Failed to load PDF files: Stream has ended unexpectedly
+2025-06-09 20:23:45,757 - WARNING - EOF marker not found
+2025-06-09 20:23:45,758 - ERROR - Error loading file C:\Users\vrlin\OneDrive\Desktop\Project_New\chatbot\data\test_dummy.pdf
+2025-06-09 20:23:45,759 - ERROR - Failed to load PDF files: Stream has ended unexpectedly
+2025-06-09 20:24:16,152 - INFO - Use pytorch device_name: cpu
+2025-06-09 20:24:16,153 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-09 20:24:26,176 - INFO - Loaded HuggingFace embedding model.
+2025-06-09 20:24:26,231 - INFO - Use pytorch device_name: cpu
+2025-06-09 20:24:26,232 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-09 20:24:30,132 - INFO - Loaded HuggingFace embedding model.
+2025-06-09 20:24:30,155 - INFO - Loading faiss with AVX2 support.
+2025-06-09 20:24:30,237 - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-09 20:24:30,260 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-09 20:24:30,834 - INFO - Loaded FAISS vectorstore from local path.
+2025-06-09 20:27:08,124 - WARNING - EOF marker not found
+2025-06-09 20:27:08,125 - ERROR - Error loading file C:\Users\vrlin\OneDrive\Desktop\Project_New\chatbot\data\test_dummy.pdf
+2025-06-09 20:27:08,150 - ERROR - Failed to load PDF files: Stream has ended unexpectedly
+2025-06-10 07:41:32,216 - WARNING - EOF marker not found
+2025-06-10 07:41:32,237 - ERROR - Error loading file C:\Users\vrlin\OneDrive\Desktop\Project_New\Chatbot\data\test_dummy.pdf
+2025-06-10 07:41:32,237 - ERROR - Failed to load PDF files: Stream has ended unexpectedly
+2025-06-10 07:41:32,237 - CRITICAL - Pipeline execution failed: Stream has ended unexpectedly
+2025-06-10 08:05:49,496 - INFO - Loaded 474 PDF pages from C:\Users\vrlin\OneDrive\Desktop\Project_New\Chatbot\data.
+2025-06-10 08:05:49,768 - INFO - Created 1718 chunks from documents.
+2025-06-10 08:09:05,028 - INFO - Use pytorch device_name: cpu
+2025-06-10 08:09:05,028 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-10 08:09:34,496 - INFO - Loaded HuggingFace embedding model.
+2025-06-10 08:13:22,714 - INFO - Loading faiss with AVX2 support.
+2025-06-10 08:13:23,776 - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-10 08:13:23,896 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-10 08:13:25,011 - INFO - Saved FAISS vectorstore to C:\Users\vrlin\OneDrive\Desktop\Project_New\Chatbot\vectorstore\db_faiss.
+2025-06-10 08:13:25,019 - INFO - Vector building pipeline completed successfully.

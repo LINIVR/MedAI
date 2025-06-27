@@ -1,0 +1,112 @@
+2025-06-09 21:29:13,385 - INFO - Use pytorch device_name: cpu
+2025-06-09 21:29:13,385 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-09 21:29:47,956 - INFO - Loaded HuggingFace embedding model.
+2025-06-09 21:29:48,061 - INFO - Loading faiss with AVX2 support.
+2025-06-09 21:29:50,339 - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-09 21:29:50,447 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-09 21:29:51,103 - INFO - Loaded FAISS vectorstore from local path.
+2025-06-09 21:29:59,506 - INFO - ConversationalRetrievalChain created successfully.
+2025-06-09 21:31:51,106 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:31:51,578 - INFO - Bot answer: Eczema
+
+Eczema, also known as atopic dermatitis, is a chronic skin condition characterized by dry, itchy, and inflamed skin. It is often accompanied by redness, swelling, and blistering. The exact cause of eczema is unknown, but it is believed to be related to a combination of genetic and environmental factors.
+
+Common symptoms of eczema include:
+
+* Dry, itchy, and inflamed skin
+* Redness and swelling
+* Blistering and oozing
+* Thickening of the skin
+
+Treatments for eczema include:
+
+* Topical corticosteroids to reduce inflammation
+* Moisturizers to hydrate the skin
+* Oral antihistamines to relieve itching
+* Phototherapy to reduce inflammation
+
+This tool is for awareness only. If you experience these symptoms, please consult a doctor.
+2025-06-09 21:32:17,983 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:32:18,940 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:32:18,945 - INFO - Bot answer: Eczema, also known as atopic dermatitis, is a chronic skin condition characterized by dry, itchy, and inflamed skin. Common symptoms of eczema include:
+
+* Dry, itchy, and inflamed skin
+* Redness and swelling
+* Blistering and oozing
+* Thickening of the skin
+
+Treatments for eczema include:
+
+* Topical corticosteroids to reduce inflammation
+* Moisturizers to hydrate the skin
+* Oral antihistamines to relieve itching
+* Phototherapy to reduce inflammation
+
+This tool is for awareness only. If you experience these symptoms, please consult a doctor.
+2025-06-09 21:33:03,507 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:33:04,707 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:33:04,715 - INFO - Bot answer: There is no direct relationship between eczema and nail cracks mentioned in the provided context. However, it is possible that eczema can cause nail changes such as brittleness, splitting, or ridging due to the inflammation and dryness associated with the condition. 
+
+It is also possible that nail cracks can be a symptom of another skin condition, such as dyshidrotic eczema, which is characterized by the sudden appearance of small, intensely itchy blisters on the sides of the fingers, toes, palms or soles of the feet. 
+
+This tool is for awareness only. If you experience these symptoms, please consult a doctor.
+2025-06-09 21:33:44,097 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:33:45,458 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:33:45,467 - INFO - Bot answer: Eczema, also known as atopic dermatitis, is a chronic skin condition characterized by dry, itchy, and inflamed skin. It is often accompanied by redness, swelling, and blistering. The exact cause of eczema is unknown, but it is believed to be related to a combination of genetic and environmental factors.
+
+Common symptoms of eczema include:
+
+* Dry, itchy, and inflamed skin
+* Redness and swelling
+* Blistering and oozing
+* Thickening of the skin
+
+Treatments for eczema include:
+
+* Topical corticosteroids to reduce inflammation
+* Moisturizers to hydrate the skin
+* Oral antihistamines to relieve itching
+* Phototherapy to reduce inflammation
+
+This tool is for awareness only. If you experience these symptoms, please consult a doctor.
+2025-06-09 21:34:04,864 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:34:06,147 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:34:06,186 - INFO - Bot answer: Eczema, also known as atopic dermatitis, can cause itching on the scalp. In fact, eczema can affect any area of the body, including the scalp, and can cause symptoms such as dryness, itching, and inflammation. The itching can be intense and may lead to scratching, which can further irritate the skin and cause it to become inflamed.
+
+Scalp eczema, also known as seborrheic dermatitis, is a common condition that affects the scalp and can cause itching, redness, and flaking of the skin. It is often accompanied by dandruff-like symptoms and can be triggered by environmental factors such as stress, cold weather, and certain soaps.
+
+Treatments for scalp eczema include topical corticosteroids, moisturizers, and antifungal medications. In severe cases, phototherapy may be necessary to reduce inflammation and itching.
+
+This tool is for awareness only. If you experience these symptoms, please consult a doctor.
+2025-06-09 21:35:49,088 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:35:50,407 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-09 21:35:50,414 - INFO - Bot answer: Yes, there is a connection between eczema and chickenpox. Eczema herpeticum is a rare but serious complication of atopic dermatitis (eczema) that can occur when the skin is infected with the varicella-zoster virus, which causes chickenpox. This condition is characterized by the sudden appearance of clusters of itchy blisters or punched-out lesions on the skin, often accompanied by fever and malaise.
+
+Chickenpox is a highly contagious viral infection that causes an itchy, blistered rash, mainly in children. While chickenpox and eczema are two separate conditions, they can be linked in the case of eczema herpeticum.
+
+This tool is for awareness only. If you experience these symptoms, please consult a doctor.
+2025-06-09 21:46:08,378 - INFO - User exited the chat.
+2025-06-10 08:16:33,847 - INFO - Loading vectorstore...
+2025-06-10 08:17:04,867 - INFO - Use pytorch device_name: cpu
+2025-06-10 08:17:04,867 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-10 08:17:15,015 - INFO - Loaded HuggingFace embedding model.
+2025-06-10 08:17:15,015 - INFO - Loading faiss with AVX2 support.
+2025-06-10 08:17:15,062 - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-10 08:17:15,078 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-10 08:17:15,364 - INFO - Loaded FAISS vectorstore from local path.
+2025-06-10 08:17:21,664 - INFO - LLM initialized.
+2025-06-10 08:17:21,817 - INFO - RetrievalQA chain created successfully.
+2025-06-10 08:17:39,615 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-10 08:18:04,206 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-10 08:31:43,578 - INFO - Loading vectorstore...
+2025-06-10 08:32:12,068 - INFO - Use pytorch device_name: cpu
+2025-06-10 08:32:12,068 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-06-10 08:32:23,342 - INFO - Loaded HuggingFace embedding model.
+2025-06-10 08:32:23,349 - INFO - Loading faiss with AVX2 support.
+2025-06-10 08:32:23,406 - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-10 08:32:23,427 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-10 08:32:23,554 - INFO - Loaded FAISS vectorstore from local path.
+2025-06-10 08:32:28,396 - INFO - LLM initialized.
+2025-06-10 08:32:28,399 - INFO - RetrievalQA chain created successfully.
+2025-06-10 08:33:00,346 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-10 08:33:23,555 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"

@@ -1,0 +1,43 @@
+# Core libraries
+langchain
+langchain-community
+langchain-core
+langchain-huggingface
+
+# Groq LLM support
+langchain-groq
+
+# Hugging Face Embeddings
+huggingface-hub
+sentence-transformers
+transformers
+
+# Vector store
+faiss-cpu
+
+# PDF loading
+pypdf
+
+# Streamlit UI 
+streamlit
+
+# Logging and testing
+loguru
+
+opencv-python
+
+torch
+accelerate
+tokenizers
+
+python-dotenv
+pandas
+
+
+seaborn
+
+transformers
+PyPDF2
+pytesseract
+Pillow
+torch
