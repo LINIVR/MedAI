@@ -41,3 +41,4 @@ seaborn
 PyPDF2
 pytesseract
 Pillow
+gdown

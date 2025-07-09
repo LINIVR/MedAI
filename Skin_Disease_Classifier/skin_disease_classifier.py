@@ -9,10 +9,23 @@ This module handles:
 """
 
 import os
+import gdown
 import logging
 from pathlib import Path
 import pandas as pd
 from ultralytics import YOLO
+
+
+
+MODEL_PATH = "Skin_Disease_Classifier/model/yolo11s_best_model.pt"
+GOOGLE_DRIVE_ID = "1hMuswhlLydskPf8MdPI61400GUAoA3y7"
+
+# Download the model if it doesn't already exist
+if not os.path.exists(MODEL_PATH):
+    print(" Downloading YOLOv11s model from Google Drive...")
+    url = f"https://drive.google.com/uc?id={GOOGLE_DRIVE_ID}"
+    gdown.download(url, MODEL_PATH, quiet=False)
+
 
 # Define base and log paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
