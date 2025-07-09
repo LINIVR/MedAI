@@ -21,23 +21,23 @@ pypdf
 # Streamlit UI 
 streamlit
 
-# Logging and testing
+# Logging a
 loguru
 
-opencv-python
 
-torch
+
 accelerate
 tokenizers
 
 python-dotenv
 pandas
 
-
+torch==2.6.0
+ultralytics==8.3.162
+opencv-python
 seaborn
 
-transformers
+
 PyPDF2
 pytesseract
 Pillow
-torch

@@ -61,3 +61,107 @@
 2025-06-10 08:13:23,896 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
 2025-06-10 08:13:25,011 - INFO - Saved FAISS vectorstore to C:\Users\vrlin\OneDrive\Desktop\Project_New\Chatbot\vectorstore\db_faiss.
 2025-06-10 08:13:25,019 - INFO - Vector building pipeline completed successfully.
+2025-07-05 09:02:35,866 - ERROR - __main__ - Error building vectorstore: name 'PDF_FOLDER' is not defined
+2025-07-05 09:07:08,844 - INFO - __main__ - Loaded 474 documents.
+2025-07-05 09:07:09,040 - INFO - __main__ - Split into 1718 chunks.
+2025-07-05 09:10:12,377 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-05 09:10:12,378 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-05 09:14:00,671 - INFO - faiss.loader - Loading faiss with AVX2 support.
+2025-07-05 09:14:02,201 - INFO - faiss.loader - Successfully loaded faiss with AVX2 support.
+2025-07-05 09:14:02,472 - INFO - faiss - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-05 09:14:02,809 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-06 08:34:05,694 - INFO - __main__ - Loaded 474 documents.
+2025-07-06 08:34:07,945 - INFO - __main__ - Split into 1718 chunks.
+2025-07-06 08:34:09,609 - INFO - __main__ - Loading HuggingFace embeddings
+2025-07-06 08:41:13,108 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-06 08:42:23,729 - INFO - __main__ - Loaded 474 documents.
+2025-07-06 08:42:24,334 - INFO - __main__ - Split into 1718 chunks.
+2025-07-06 08:42:25,134 - INFO - __main__ - Loading HuggingFace embeddings
+2025-07-06 08:42:55,219 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-06 08:42:55,219 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-06 08:46:13,964 - INFO - faiss.loader - Loading faiss with AVX2 support.
+2025-07-06 08:46:14,027 - INFO - faiss.loader - Successfully loaded faiss with AVX2 support.
+2025-07-06 08:46:14,043 - INFO - faiss - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-06 08:46:14,201 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-06 09:03:38,284 - INFO - Initializing vectorstore and LLM...
+2025-07-06 09:04:07,708 - INFO - Use pytorch device_name: cpu
+2025-07-06 09:04:07,708 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-06 09:04:16,137 - INFO - Loaded HuggingFace embedding model.
+2025-07-06 09:04:16,143 - INFO - Loading faiss with AVX2 support.
+2025-07-06 09:04:16,187 - INFO - Successfully loaded faiss with AVX2 support.
+2025-07-06 09:04:16,199 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-06 09:04:16,394 - INFO - Loaded FAISS vectorstore from local path.
+2025-07-06 09:04:16,430 - INFO - Loading ChatGroq LLM
+2025-07-06 09:04:23,518 - INFO - ConversationalRetrievalChain ready.
+2025-07-06 09:05:02,787 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:05:14,805 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:05:15,535 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:05:36,451 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:05:37,131 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:05:51,702 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:05:52,389 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:06:06,855 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:06:07,737 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:06:28,328 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 09:06:29,436 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-06 21:19:55,688 - INFO - __main__ - Loaded 474 documents.
+2025-07-06 21:19:56,619 - INFO - __main__ - Split into 1718 chunks.
+2025-07-06 21:20:03,481 - INFO - __main__ - Loading HuggingFace embeddings
+2025-07-06 21:28:12,630 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-06 21:28:12,631 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-06 21:31:30,240 - INFO - __main__ - Loaded 474 documents.
+2025-07-06 21:31:30,457 - INFO - __main__ - Split into 1718 chunks.
+2025-07-06 21:36:19,237 - INFO - faiss.loader - Loading faiss with AVX2 support.
+2025-07-06 21:36:27,489 - INFO - faiss.loader - Successfully loaded faiss with AVX2 support.
+2025-07-06 21:36:29,133 - INFO - faiss - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-06 21:36:31,141 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-06 21:38:18,069 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-06 21:38:18,069 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              2025-07-07 07:29:39,252 - INFO - __main__ - Loaded 474 documents.
+2025-07-07 07:29:39,509 - INFO - __main__ - Split into 1718 chunks.
+2025-07-07 07:33:27,416 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-07 07:33:27,416 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-07 07:38:34,484 - INFO - faiss.loader - Loading faiss with AVX2 support.
+2025-07-07 07:38:34,905 - INFO - faiss.loader - Successfully loaded faiss with AVX2 support.
+2025-07-07 07:38:35,123 - INFO - faiss - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-07 07:38:35,550 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-07 13:43:54,587 - INFO - __main__ - Loaded 474 documents.
+2025-07-07 13:43:54,916 - INFO - __main__ - Split into 1718 chunks.
+2025-07-07 13:49:11,224 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-07 13:49:11,224 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-07 13:55:08,763 - INFO - faiss.loader - Loading faiss with AVX2 support.
+2025-07-07 13:55:11,811 - INFO - faiss.loader - Successfully loaded faiss with AVX2 support.
+2025-07-07 13:55:12,053 - INFO - faiss - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-07 13:55:12,498 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-08 11:28:24,989 - INFO - __main__ - Loaded 474 documents.
+2025-07-08 11:28:25,838 - INFO - __main__ - Split into 1718 chunks.
+2025-07-08 11:29:41,950 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-08 11:29:41,950 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 11:34:07,921 - INFO - faiss.loader - Loading faiss with AVX2 support.
+2025-07-08 11:34:08,152 - INFO - faiss.loader - Successfully loaded faiss with AVX2 support.
+2025-07-08 11:34:08,219 - INFO - faiss - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-08 11:34:08,644 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-08 15:56:30,782 - INFO - __main__ - Loaded 474 documents.
+2025-07-08 15:56:31,105 - INFO - __main__ - Split into 1718 chunks.
+2025-07-08 15:57:13,026 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2025-07-08 15:57:13,026 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 16:02:28,078 - INFO - faiss.loader - Loading faiss with AVX2 support.
+2025-07-08 16:02:28,156 - INFO - faiss.loader - Successfully loaded faiss with AVX2 support.
+2025-07-08 16:02:28,172 - INFO - faiss - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-08 16:02:28,445 - INFO - __main__ - Vectorstore saved to 'vectorstore/db_faiss'.
+2025-07-08 19:36:15,918 - INFO - Loaded 474 documents.
+2025-07-08 19:36:16,176 - INFO - Split into 1718 chunks.
+2025-07-08 19:38:50,429 - INFO - Use pytorch device_name: cpu
+2025-07-08 19:38:50,429 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 19:44:07,233 - INFO - Loading faiss with AVX2 support.
+2025-07-08 19:44:07,574 - INFO - Successfully loaded faiss with AVX2 support.
+2025-07-08 19:44:07,660 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-08 19:44:08,062 - INFO - Vectorstore saved at 'C:\Users\vrlin\OneDrive\Desktop\MedAI\Chatbot\vectorstore\db_faiss'.
+2025-07-09 03:29:07,139 - INFO - Loaded 474 documents.
+2025-07-09 03:29:07,375 - INFO - Split into 1718 chunks.
+2025-07-09 03:36:38,766 - INFO - Use pytorch device_name: cpu
+2025-07-09 03:36:38,766 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-09 03:45:20,776 - INFO - Loading faiss with AVX2 support.
+2025-07-09 03:45:22,507 - INFO - Successfully loaded faiss with AVX2 support.
+2025-07-09 03:45:22,684 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-09 03:45:23,287 - INFO - Vectorstore saved at 'C:\Users\vrlin\OneDrive\Desktop\MedAI\Chatbot\vectorstore\db_faiss'.

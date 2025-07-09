@@ -1,102 +1,125 @@
 """
-Streamlit app for MEDAI Medical Assistant.
-Modules: Chatbot (retrieval QA), Image Classifier, and Report Summarizer.
+MEDAI: Streamlit App for Medical Assistant
+Modules:
+- Chatbot (LLM + Vectorstore + Memory)
+- Report Summarizer (PDF/Image OCR + Summarization)
+- Skin Disease Classifier (YOLOv11s)
 """
 
 import os
+import shutil
 import streamlit as st
-from PIL import Image
-from Chatbot.retrieval_qa import get_retrieval_chain
-from Skin_Disease_Classifier.skin_disease_classifier import predict, save_and_resize_image,load_model
+from pathlib import Path
+
+# Import modules
+from Chatbot.vectorstorebuilder import get_vectorstore
+from Chatbot.retrievalqa import get_retrieval_chain
+from Skin_Disease_Classifier.skin_disease_classifier import save_uploaded_image, predict
 from Report_Summarizer.report_summarizer import summarize_report
 
-# Streamlit configuration
-st.set_page_config(page_title="MEDAI Medical Assistant", layout="wide")
-st.title("🩺 MEDAI Medical Assistant")
+# Streamlit setup
+st.set_page_config(page_title="MEDAI: Medical Assistant", layout="wide")
+st.title("MEDAI - Medical Assistant for Skin Health")
 
-# --- Caching for chatbot chain ---
-@st.cache_resource
-def get_cached_qa_chain():
-    return get_retrieval_chain()
-
-# --- Caching for image classifier 
-@st.cache_resource
-def get_cached_predictor():
-    return load_model()
-
-# --- Caching for report summarizer ---
-@st.cache_resource
-def get_cached_summarizer():
-    return summarize_report
-
-# Tabs for each module
+# Tabs
 tab1, tab2, tab3 = st.tabs([
-    "💬 Chatbot",
-    "🖼️ Image Classifier",
-    "📄 Report Summarizer"
+    "Chatbot (Skin Q&A)",
+    "Report Summarizer",
+    "Skin Disease Classifier"
 ])
 
-# --- Tab 1: Chatbot ---
+# Chatbot Tab 
 with tab1:
-    st.subheader("Skin Disease Chatbot")
+    st.header("Medical Skin Assistant Chatbot")
 
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
-
-    if "qa_chain" not in st.session_state:
-        st.session_state.qa_chain = get_cached_qa_chain()
-
-    user_input = st.text_input("Ask your medical question here:")
-
-    if user_input:
+    if "chat_chain" not in st.session_state:
         try:
-            result = st.session_state.qa_chain.invoke({"question": user_input})
-            response = result.get("answer", result)
-            st.session_state.chat_history.append(("You", user_input))
-            st.session_state.chat_history.append(("Bot", response))
+            st.session_state.chat_chain = get_retrieval_chain()
+            st.session_state.chat_history = []
         except Exception as e:
-            response = f"Error: Something went wrong. ({e})"
-            st.session_state.chat_history.append(("Bot", response))
+            st.error(f"Failed to load chatbot: {e}")
 
-    for sender, message in st.session_state.chat_history:
-        st.write(f"**{sender}:** {message}")
+    if "chat_chain" in st.session_state:
+        with st.form("chatbot_form", clear_on_submit=True):
+            user_input = st.text_area("Ask a question (e.g., symptoms or skin condition):", height=70)
+            submit = st.form_submit_button("Send")
 
-# --- Tab 2: Image Classifier ---
+        if submit and user_input.strip():
+            try:
+                result = st.session_state.chat_chain.invoke({"question": user_input})
+                bot_response = result.get("answer", str(result))
+
+                # Save to session history
+                st.session_state.chat_history.append(("user", user_input))
+                st.session_state.chat_history.append(("bot", bot_response))
+
+            except Exception as e:
+                st.session_state.chat_history.append(("bot", f"Error: {e}"))
+
+       
+        if "chat_history" in st.session_state:
+            for role, msg in st.session_state.chat_history[-8:]:
+                with st.chat_message(role):
+                    st.markdown(msg)
+
+# Report Summarizer Tab 
 with tab2:
-    st.subheader("Upload an image for skin disease classification")
-    uploaded_file = st.file_uploader("Choose an image (JPG, PNG)", type=["jpg", "jpeg", "png"])
+    st.header("Summarize Medical Reports")
 
-    if uploaded_file is not None:
-        st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
-        with st.spinner("Classifying..."):
-            try:
-                image_path = save_and_resize_image(uploaded_file)
-                df = predict(image_path)
-                if df is not None and not df.empty:
-                    st.success("Prediction Results:")
-                    st.dataframe(df)
-                else:
-                    st.warning("No disease detected or classification failed.")
-            except Exception as e:
-                st.error(f"Failed to classify the image: {e}")
+    uploaded_report = st.file_uploader(
+        "Upload a PDF or image file",
+        type=["pdf", "png", "jpg", "jpeg"],
+        key="summary_uploader"
+    )
 
-# --- Tab 3: Report Summarizer ---
-with tab3:
-    st.subheader("Summarize a Medical Report (PDF or Image)")
-    report_file = st.file_uploader("Upload a report (PDF, JPG, PNG)", type=["pdf", "jpg", "jpeg", "png"], key="report")
-    if report_file is not None:
-        temp_dir = "temp"
-        os.makedirs(temp_dir, exist_ok=True)
-        temp_path = os.path.join(temp_dir, report_file.name)
+    if uploaded_report:
+        temp_dir = Path(__file__).resolve().parent / "Report_Summarizer" / "temp"
+        temp_dir.mkdir(parents=True, exist_ok=True)
+        temp_path = temp_dir / uploaded_report.name
+
         with open(temp_path, "wb") as f:
-            f.write(report_file.getbuffer())
+            f.write(uploaded_report.getbuffer())
 
-        with st.spinner("Extracting and summarizing..."):
-            try:
-                summary = summarize_report(temp_path)
-                st.success("Summary:")
-                st.write(summary)
-            except Exception as e:
-                st.error(f"Failed to summarize the report: {e}")
-            finally:
-                os.remove(temp_path)
+        with st.spinner("Summarizing report..."):
+            summary = summarize_report(str(temp_path))
+
+        st.subheader("Summary:")
+        st.write(summary)
+
+        #  Cleanup temp folder
+        shutil.rmtree(temp_dir, ignore_errors=True)
+
+# Skin Disease Classifier Tab 
+with tab3:
+    st.header("Skin Disease Classifier")
+
+    uploaded_img = st.file_uploader(
+        "Upload a skin image (JPG/PNG)",
+        type=["jpg", "jpeg", "png"],
+        key="img_uploader"
+    )
+
+    if uploaded_img:
+        try:
+            img_path = save_uploaded_image(uploaded_img)
+            st.image(img_path, caption="Uploaded Image", width=300)
+
+            with st.spinner("Classifying..."):
+                df = predict(img_path)
+
+            if not df.empty:
+                st.subheader("Prediction Results")
+                st.dataframe(df, hide_index=True)
+                top = df.iloc[0]
+                st.success(f"Most likely: {top['class']} (confidence: {top['confidence'] * 100:.1f}%)")
+            else:
+                st.warning("No prediction could be made. Try another image.")
+
+            # Cleanup temp folder
+            temp_dir = Path(__file__).resolve().parent / "Skin_Disease_Classifier" / "temp"
+            shutil.rmtree(temp_dir, ignore_errors=True)
+
+        except Exception as e:
+            st.error(f"Classification failed: {e}")
+
+

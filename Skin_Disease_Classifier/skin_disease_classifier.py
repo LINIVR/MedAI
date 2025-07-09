@@ -1,42 +1,49 @@
 """
-Skin Disease Classifier
+Skin Disease Classifier Module
 
-Loads and runs a fine-tuned YOLOv11s model for skin disease detection.
-Assumes the model is located in 'Project/Skin_Disease_Classifier/model/yolov11s.pt'.
-Supports image uploads and resizing using OpenCV.
+This module handles:
+- Loading the fine-tuned YOLOv11s model
+- Saving uploaded skin images
+- Running classification
+- Returning predictions with class probabilities
 """
 
-import pandas as pd
-import logging
 import os
-import cv2
+import logging
 from pathlib import Path
+import pandas as pd
 from ultralytics import YOLO
 
-# Logging setup
-os.makedirs("logs", exist_ok=True)
+# Define base and log paths
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+MODEL_PATH = os.path.join(BASE_DIR, "model", "yolo11s_best_model.pt")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Configure logging
 logging.basicConfig(
-    filename="logs/skin_disease_classifier.log",
+    filename=os.path.join(LOG_DIR, "skin_disease_classifier.log"),
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     force=True
 )
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "model", "yolo11s_best_model.pt")
-
+# Global model cache
 _model = None
+
 
 def load_model():
     """
-    Load the YOLOv11s model from disk.
+    Load YOLOv11s model from disk (once per session).
 
     Returns:
-        A loaded YOLOv11s model object.
+        YOLO: Loaded model instance.
     """
     global _model
     if _model is None:
         try:
+            if not os.path.exists(MODEL_PATH):
+                raise FileNotFoundError(f"Model not found at: {MODEL_PATH}")
             logging.info("Loading YOLOv11s model from: %s", MODEL_PATH)
             _model = YOLO(MODEL_PATH)
         except Exception as e:
@@ -44,80 +51,76 @@ def load_model():
             raise RuntimeError("Failed to load YOLOv11s model.") from e
     return _model
 
-def save_and_resize_image(uploaded_file, target_size=(224, 224)) -> str:
+
+def save_uploaded_image(uploaded_file) -> str:
     """
-    Save uploaded image and resize to the model's input dimensions.
+    Save uploaded image to a temporary directory.
 
     Args:
-        uploaded_file: Uploaded file from Streamlit (BytesIO).
-        target_size: Tuple (width, height) for resizing.
+        uploaded_file: Streamlit uploaded file object.
 
     Returns:
-        str: Path to the resized image.
+        str: Absolute path to saved image.
     """
     try:
-        temp_dir = Path("Skin_Disease_Classifier/temp")
+        temp_dir = Path(BASE_DIR) / "temp"
         temp_dir.mkdir(parents=True, exist_ok=True)
-        temp_path = temp_dir / "input.jpg"
+        temp_path = temp_dir / uploaded_file.name
 
         with open(temp_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
 
-        img = cv2.imread(str(temp_path))
-        if img is None:
-            raise ValueError("Uploaded image could not be read by OpenCV.")
-
-        resized = cv2.resize(img, target_size)
-        cv2.imwrite(str(temp_path), resized)
-        logging.info("Image uploaded and resized to: %s", temp_path)
+        logging.info("Image uploaded and saved at: %s", temp_path)
         return str(temp_path)
 
     except Exception as e:
-        logging.error("Failed to process uploaded image: %s", str(e))
-        raise RuntimeError("Image preprocessing failed.") from e
+        logging.error("Failed to save uploaded image: %s", str(e))
+        raise RuntimeError("Image saving failed.") from e
+
 
 def predict(image_path: str) -> pd.DataFrame:
     """
-    Run classification on the provided image and return label probabilities.
+    Perform classification on a skin image using YOLOv11s.
 
     Args:
-        image_path (str): Full path to the image file.
+        image_path (str): Absolute path to the input image.
 
     Returns:
-        pd.DataFrame: Prediction probabilities per class.
+        pd.DataFrame: Sorted DataFrame with 'class' and 'confidence' columns.
     """
     try:
         model = load_model()
-        logging.info("Running classification on image: %s", image_path)
+        logging.info("Running classification on: %s", image_path)
         results = model.predict(image_path)
 
-        # Check for classification output
-        probs = results[0].probs
-        if probs is None:
+        if not results or results[0].probs is None:
             logging.warning("No classification result returned.")
             return pd.DataFrame()
 
-        # Convert to pandas DataFrame
         class_names = list(model.names.values())
-        scores = probs.data.tolist()
-        df = pd.DataFrame({"class": class_names, "confidence": scores})
-        df["confidence"] = df["confidence"].apply(lambda x: round(float(x), 4))
-        df = df.sort_values(by="confidence", ascending=False).reset_index(drop=True)
+        confidences = results[0].probs.data.tolist()
 
-        logging.info("Predicted classes: %s", df.to_dict(orient="records"))
+        df = pd.DataFrame({
+            "class": class_names,
+            "confidence": [round(float(c), 4) for c in confidences]
+        }).sort_values(by="confidence", ascending=False).reset_index(drop=True)
+
+        logging.info("Prediction result: %s", df.to_dict(orient="records"))
         return df
 
     except Exception as e:
-        logging.error("Classification failed: %s", str(e))
+        logging.error("Prediction failed: %s", str(e))
         raise RuntimeError("Skin disease classification failed.") from e
 
+
 if __name__ == "__main__":
-    test_img_path = "test_images/BCC4.jpeg"
-    if not os.path.exists(test_img_path):
-        print("Image not found at:", test_img_path)
+    test_image = os.path.join(BASE_DIR, "test_images", "BCC4.jpeg")
+    if not os.path.exists(test_image):
+        print("Test image not found:", test_image)
     else:
+        print("Running test on:", test_image)
         try:
-            result_df = predict(test_img_path)
-            print("Prediction Results:\n", result_df)
-        except Exception as error:
-            print("Error:", error)
+            df_result = predict(test_image)
+            print(df_result)
+        except Exception as err:
+            print("Error during test prediction:", err)
