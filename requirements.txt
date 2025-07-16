@@ -34,7 +34,7 @@ pandas
 
 torch==2.6.0
 ultralytics==8.3.162
-opencv-python-headless==4.8.0.76
+opencv-python-headless
 
 seaborn
 
@@ -43,3 +43,4 @@ PyPDF2
 pytesseract
 Pillow
 gdown
+numpy
