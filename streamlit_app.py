@@ -22,11 +22,21 @@ if mode == "💬 Chatbot":
     if user_input:
         with st.spinner("Thinking..."):
             result = st.session_state.chain.invoke({"question": user_input})
+            answer = result.get("answer", "No response.")
             st.session_state.chat_history.append(("user", user_input))
-            st.session_state.chat_history.append(("bot", result.get("answer", "No response.")))
+            st.session_state.chat_history.append(("bot", answer))
 
-    for speaker, msg in reversed(st.session_state.chat_history):
-        st.chat_message(speaker).markdown(msg)
+            # Display the answer
+            st.chat_message("bot").markdown(answer)
+
+            # Display source document chunks (RAG proof)
+            if "source_documents" in result:
+                st.markdown("### 📚 Retrieved Chunks from Vectorstore")
+                for i, doc in enumerate(result["source_documents"]):
+                    chunk = doc.page_content.strip()[:600]  # Limit to 600 chars
+                    source_file = doc.metadata.get("source", "Unknown source")
+                    st.markdown(f"**Chunk {i+1} from `{source_file}`:**")
+                    st.code(chunk, language="markdown")
 
 elif mode == "🖼️ Skin Disease Classifier":
     st.subheader("Upload an image for skin disease prediction")
