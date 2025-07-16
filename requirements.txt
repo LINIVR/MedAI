@@ -34,7 +34,7 @@ pandas
 
 torch==2.6.0
 ultralytics==8.3.162
-opencv-python-headless
+opencv-python-headless==4.8.0.76
 
 seaborn
 
