@@ -1,45 +1,36 @@
 """
 RetrievalQA Chain for MEDAI Chatbot
 
-This module sets up the LangChain ConversationalRetrievalChain
-using Groq (LLaMA3) and the local FAISS vectorstore.
+Builds a ConversationalRetrievalChain using:
+- Groq (LLaMA3) LLM
+- FAISS vectorstore from embedded PDFs
+- Custom prompt for skin disease chatbot
+
+Returns source documents internally for test tracking.
 """
 
 import os
-import logging
+import sys
+
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
-from Chatbot.vectorstorebuilder import get_vectorstore
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from .vectorstorebuilder import get_vectorstore
+from medai_logger import get_logger
 
-# Define log path
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LOG_DIR = os.path.join(BASE_DIR, "logs")
-LOG_FILE = os.path.join(LOG_DIR, "retrieval_qa.log")
-os.makedirs(LOG_DIR, exist_ok=True)
-
-# Configure logging
-logging.basicConfig(
-    filename=LOG_FILE,
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
-    force=True
-)
-logger = logging.getLogger(__name__)
-
-# Load environment variables
 load_dotenv()
+
+
+logger = get_logger("retrievalqa")
 
 
 def get_prompt_template() -> PromptTemplate:
     """
-    Returns the prompt template for medical assistant responses.
-
-    Returns:
-        PromptTemplate: Custom instruction-based prompt.
+    Returns the custom prompt template for medical Q&A.
     """
     template = """
 You are a medical assistant chatbot for skin-related conditions.
@@ -47,11 +38,11 @@ Use only the provided context to answer user questions.
 
 Instructions:
 - If the user describes SYMPTOMS:
-  1. Suggest 3 possible skin diseases with brief summaries.
+  1. Suggest 3 possible skin diseases .
   2. Ask: "Would you like to know more about any of these?"
 
 - If the user asks about a DISEASE:
-  1. Explain the disease, common symptoms, and treatments (maximum 6 sentences).
+  1. Explain the disease, common symptoms, and treatments.
   2. End with: "This tool is for awareness only. If you experience these symptoms, please consult a doctor."
 
 If no information is found, reply:
@@ -72,12 +63,9 @@ Question:
     )
 
 
-def get_retrieval_chain():
+def get_retrieval_chain() -> ConversationalRetrievalChain:
     """
-    Builds and returns the ConversationalRetrievalChain object.
-
-    Returns:
-        ConversationalRetrievalChain: LangChain Retrieval QA pipeline.
+    Initializes the RetrievalQA pipeline with memory and custom prompt.
     """
     try:
         logger.info("Initializing vectorstore and LLM...")
@@ -91,7 +79,8 @@ def get_retrieval_chain():
 
         memory = ConversationBufferMemory(
             memory_key="chat_history",
-            return_messages=True
+            return_messages=True,
+            output_key="answer"  
         )
 
         prompt = get_prompt_template()
@@ -101,27 +90,36 @@ def get_retrieval_chain():
             retriever=retriever,
             memory=memory,
             combine_docs_chain_kwargs={"prompt": prompt},
+            return_source_documents=True
         )
 
-        logger.info("ConversationalRetrievalChain initialized.")
+        logger.info("ConversationalRetrievalChain initialized successfully.")
         return chain
 
     except Exception as e:
-        logger.critical("Error setting up RetrievalQA chain: %s", str(e))
+        logger.critical("Error initializing RetrievalQA chain: %s", str(e))
         raise
 
 
 if __name__ == "__main__":
+    print("Chatbot Interaction\n")
     chain = get_retrieval_chain()
-    print("Type your question (type 'exit' to quit):")
 
     while True:
-        query = input("\nYou: ")
-        if query.lower() in ["exit", "quit"]:
+        user_query = input(" You: ")
+        if user_query.lower() in ["exit", "quit"]:
             break
+
         try:
-            result = chain.invoke({"question": query})
-            print("\nBot:", result.get("answer", result))
-        except Exception as e:
-            print("\nBot: Something went wrong.")
-            logger.error("Chatbot error: %s", str(e))
+            result = chain.invoke({"question": user_query})
+            print("\n Bot:", result.get("answer", "No response."))
+
+            if "source_documents" in result:
+                for doc in result["source_documents"]:
+                    print(" Source:", doc.metadata.get("source", "unknown"))
+                    print(" Content snippet:", doc.page_content[:200])
+                    print("-" * 50)
+
+        except Exception as err:
+            print(" Error during response:", err)
+            logger.error("Response generation failed: %s", str(err))

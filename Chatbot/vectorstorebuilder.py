@@ -6,32 +6,26 @@ generates embeddings using HuggingFace, and stores them in a FAISS index.
 """
 
 import os
-import logging
+import sys
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 
-# Define absolute paths
+# Add project root for logger
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from medai_logger import get_logger
+
+# Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH = os.path.join(BASE_DIR, "data")
 DB_FAISS_PATH = os.path.join(BASE_DIR, "vectorstore", "db_faiss")
-LOG_DIR = os.path.join(BASE_DIR, "logs")
-LOG_FILE = os.path.join(LOG_DIR, "vectorstore_builder.log")
 
-# Ensure directories exist
+# Initialize logger
+logger = get_logger("vectorstorebuilder")
+
+# Ensure output dir exists
 os.makedirs(DB_FAISS_PATH, exist_ok=True)
-os.makedirs(LOG_DIR, exist_ok=True)
-
-# Configure logging
-logging.basicConfig(
-    filename=LOG_FILE,
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    force=True
-)
-logger = logging.getLogger(__name__)
-
 
 def build_vectorstore():
     """
