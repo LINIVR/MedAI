@@ -31,7 +31,7 @@ if mode == "💬 Chatbot":
 
             # Display source document chunks (RAG proof)
             if "source_documents" in result:
-                st.markdown("### 📚 Retrieved Chunks from Vectorstore")
+                st.markdown("###  Retrieved Chunks from Vectorstore")
                 for i, doc in enumerate(result["source_documents"]):
                     chunk = doc.page_content.strip()[:600]  # Limit to 600 chars
                     source_file = doc.metadata.get("source", "Unknown source")

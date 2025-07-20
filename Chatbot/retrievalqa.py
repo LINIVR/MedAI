@@ -67,6 +67,7 @@ Question:
 {question}
 
 
+
 """
     return PromptTemplate(
         input_variables=["context", "chat_history", "question"],
@@ -81,11 +82,12 @@ def get_retrieval_chain() -> ConversationalRetrievalChain:
     try:
         logger.info("Initializing vectorstore and LLM...")
         vectorstore = get_vectorstore()
-        retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+        retriever = vectorstore.as_retriever(
+            search_kwargs={ "k": 10})
 
         llm = ChatGroq(
-            model_name="llama3-8b-8192",
-            temperature=0.1
+            model_name="deepseek-r1-distill-llama-70b",
+            temperature=0.0
         )
 
         memory = ConversationBufferMemory(
