@@ -1,5 +1,8 @@
 .env
 *.log
-__pycache__/
 *.pyc
-
+*.temp
+__pycache__/
+temp_reports/
+temp/
+test_images/
