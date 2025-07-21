@@ -83,10 +83,10 @@ def get_retrieval_chain() -> ConversationalRetrievalChain:
         logger.info("Initializing vectorstore and LLM...")
         vectorstore = get_vectorstore()
         retriever = vectorstore.as_retriever(
-            search_kwargs={ "k": 10})
+            search_kwargs={ "k": 5})
 
         llm = ChatGroq(
-            model_name="deepseek-r1-distill-llama-70b",
+            model_name="gemma2-9b-it",
             temperature=0.0
         )
 

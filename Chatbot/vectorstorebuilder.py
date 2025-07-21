@@ -12,7 +12,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 
-# Add project root for logger
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from medai_logger import get_logger
 
@@ -21,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH = os.path.join(BASE_DIR, "data")
 DB_FAISS_PATH = os.path.join(BASE_DIR, "vectorstore", "db_faiss")
 
-# Initialize logger
+
 logger = get_logger("vectorstorebuilder")
 
-# Ensure output dir exists
+
 os.makedirs(DB_FAISS_PATH, exist_ok=True)
 
 def build_vectorstore():
@@ -36,7 +35,7 @@ def build_vectorstore():
         documents = loader.load()
         logger.info("Loaded %d documents.", len(documents))
 
-        splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+        splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
         chunks = splitter.split_documents(documents)
         logger.info("Split into %d chunks.", len(chunks))
 
