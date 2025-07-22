@@ -39,7 +39,8 @@ def build_vectorstore():
         chunks = splitter.split_documents(documents)
         logger.info("Split into %d chunks.", len(chunks))
 
-        embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",model_kwargs={"device": "cpu"})
+  
         vectorstore = FAISS.from_documents(chunks, embeddings)
         vectorstore.save_local(DB_FAISS_PATH)
         logger.info("Vectorstore saved at '%s'.", DB_FAISS_PATH)

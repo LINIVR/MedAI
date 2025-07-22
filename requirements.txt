@@ -21,7 +21,7 @@ pypdf
 # Streamlit UI 
 streamlit
 
-# Logging a
+# Logging 
 loguru
 
 
@@ -31,16 +31,13 @@ tokenizers
 
 python-dotenv
 pandas
-
 torch==2.6.0
+
+
 ultralytics==8.3.162
 opencv-python-headless
-
 seaborn
 
-
-PyPDF2
 pytesseract
 Pillow
 gdown
-numpy

@@ -1,7 +1,9 @@
 .env
+
 *.log
 *.pyc
 *.temp
+logs/
 __pycache__/
 temp_reports/
 temp/

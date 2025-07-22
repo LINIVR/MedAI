@@ -11,7 +11,7 @@ import os
 import sys
 from typing import Optional
 
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 from PIL import Image
 from pytesseract import image_to_string
 from transformers import pipeline
