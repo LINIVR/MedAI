@@ -5,6 +5,3 @@
 *.temp
 logs/
 __pycache__/
-temp_reports/
-temp/
-test_images/
