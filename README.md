@@ -3,6 +3,7 @@ MedAI is a multi-modular healthcare application integrating LLMs, computer visio
 
 📌 Features
  1. Medical Chatbot (RAG + LLM)
+ 
 Handles two types of skin-related queries:
 
 Symptom-based Queries: Retrieves matching diseases from a FAISS Vector Store and prompts users to choose.
@@ -20,6 +21,7 @@ LangChain for RAG orchestration
 Gemma 2 9B via Groq API for response generation
 
  2. Skin Disease Classifier
+ 
 Classifies dermatological conditions from user-uploaded images.
 
 Fine-tuned YOLOv11-small (YOLOv11s) on a custom dataset (4,773 images) with three classes:
@@ -39,6 +41,7 @@ Outputs class name + probability score for predictions.
 Key Technologies: Ultralytics YOLO, Pandas, Matplotlib
 
  3. Medical Report Summarizer (OCR + NLP)
+
 Upload a PDF or image of a medical report to get a structured summary.
 
 Workflow:
